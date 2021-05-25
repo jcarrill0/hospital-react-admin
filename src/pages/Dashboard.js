@@ -9,7 +9,7 @@ import Icon from '@material-ui/icons/LocalHospital';
 
 
 const cardStyles = {
-      background: '#7ac6f7',
+    background: '#7ac6f7',
     color: 'black'
 
 };
@@ -23,9 +23,17 @@ const cardStyless = {
 
 export default () => (
     <Card style={cardStyles}>
-        <CardContent> <h1>Hospital Admin</h1> </CardContent>
-      <center>  <Icon style={cardStyless}>star</Icon></center>
-        <CardContent><center><h3>Ayudar es nuestra misión</h3></center></CardContent>
+        <CardContent>
+            <h1>Hospital Admin</h1>
+        </CardContent>
+        <center>
+            <Icon style={cardStyless}>star</Icon>
+        </center>
+        <CardContent>
+            <center>
+                <h3>Ayudar es nuestra misión</h3>
+            </center>
+        </CardContent>
     </Card>
 );
 document.body.style = 'background: #255;';

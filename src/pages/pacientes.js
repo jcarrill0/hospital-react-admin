@@ -1,15 +1,18 @@
 import React from 'react';
-import {EmailField, Responsive, SimpleList, Filter, Create,  SimpleForm, DisabledInput, ReferenceInput, SelectInput, TextInput, LongTextInput, Edit, List, Datagrid, TextField, ReferenceField, EditButton } from 'react-admin';
+import { EmailField, Responsive, SimpleList, Filter, Create, SimpleForm, DisabledInput, ReferenceInput, SelectInput, TextInput, LongTextInput, Edit, List, Datagrid, TextField, ReferenceField, EditButton } from 'react-admin';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import PersonIcon from '@material-ui/core/Avatar';
-import {SelectField, ImageInput, DateInput, ImageField, DateField} from "react-admin";
+import { SelectField, ImageInput, DateInput, ImageField, DateField } from "react-admin";
+
+
 const RegistroTitle = ({ record }) => {
     return <span>Paciente Interno {record ? `"${record.name}"` : ''}</span>;
 };
+
 const cardStyle = {
     width: 300,
     minHeight: 380,
@@ -25,32 +28,34 @@ const news = {
 };
 
 
-const CommentGrid = ({ ids, data, basePath, object }) => (
+const CommentGrid = ({ ids, data, basePath }) => (
     <div style={{ margin: '1em' }}>
-    {ids.map(id =>
-        <Card key={id} style={cardStyle}>
-            <CardHeader
-                avatar={<ImageField style={news} record={data[id]} source="pictures.src" url="src" />}
-            />
-            <CardContent>
-            Nombre
-            <TextField label="Nombre" record={data[id]} source="Name"  />
-    Fecha de Registro
-          <TextField label="Fecha" record={data[id]} source="Date"  />
-            Sexo&nbsp;
-                  <TextField record={data[id]} source="Sexo" />
-                  Edad&nbsp;
+        {
+            ids.map(id =>
+                <Card key={id} style={cardStyle}>
+                    <CardHeader
+                        avatar={<ImageField style={news} record={data[id]} source="pictures.src" url="src" />}
+                    />
+                    <CardContent>
+                        Nombre
+                        <TextField label="Nombre" record={data[id]} source="name" />
+                        Fecha de Registro
+                        <TextField label="Fecha" record={data[id]} source="Date" />
+                        Sexo&nbsp;
+                        <TextField record={data[id]} source="Sexo" />
+                        Edad&nbsp;
                         <TextField record={data[id]} source="Edad" />
-              </CardContent>
-              <CardContent>
-                  Asunto por el cual acudio a consulta.&nbsp;
+                    </CardContent>
+                    <CardContent>
+                        Asunto por el cual acudio a consulta.&nbsp;
                         <TextField record={data[id]} source="Asunto" />
-              </CardContent>
-            <CardActions style={{ textAlign: 'right' }}>
-                <EditButton resource="posts" basePath={basePath} record={data[id]} />
-            </CardActions>
-        </Card>
-    )}
+                    </CardContent>
+                    <CardActions style={{ textAlign: 'right' }}>
+                        <EditButton resource="posts" basePath={basePath} record={data[id]} />
+                    </CardActions>
+                </Card>
+            )
+        }
     </div>
 );
 CommentGrid.defaultProps = {
@@ -65,31 +70,31 @@ export const CommentsList = (props) => (
 );
 
 export const RegistroEdit = props => (
-  <Edit title={<RegistroTitle />} {...props}>
+    <Edit title={<RegistroTitle />} {...props}>
         <SimpleForm>
-        <ImageInput source="pictures" label="Related pictures" accept="image/*">
-          <ImageField source="src" title="title" />
-          </ImageInput>
-          <DisabledInput label="Registro" source="id" />
-          <TextInput label="Paciente" source="name" />
-          <TextInput source="Edad" />
+            <ImageInput source="pictures" label="Related pictures" accept="image/*">
+                <ImageField source="src" title="title" />
+            </ImageInput>
+            <DisabledInput label="Registro" source="id" />
+            <TextInput label="Paciente" source="name" />
+            <TextInput source="Edad" />
             <TextInput source="Sexo" />
-         <TextInput label="Consulta" source="Asunto" />
-         <DateInput Label="Fecha de consulta" source="Date" />
+            <TextInput label="Consulta" source="Asunto" />
+            <DateInput Label="Fecha de consulta" source="Date" />
         </SimpleForm>
     </Edit>
 );
 export const RegistroCreate = props => (
-  <Create {...props}>
+    <Create {...props}>
         <SimpleForm>
-        <ImageInput source="pictures" label="Related pictures" accept="image/*">
-          <ImageField source="src" title="title" />
-          </ImageInput>
+            <ImageInput source="pictures" label="Related pictures" accept="image/*">
+                <ImageField source="src" title="title" />
+            </ImageInput>
             <TextInput label="Paciente" source="name" />
             <TextInput source="Edad" />
-          <TextInput source="Sexo" />
-          <TextInput label="Consulta" source="Asunto" />
-           <DateInput Label="Fecha de consulta" source="Date" />
+            <TextInput source="Sexo" />
+            <TextInput label="Consulta" source="Asunto" />
+            <DateInput Label="Fecha de consulta" source="Date" />
         </SimpleForm>
     </Create>
 );
